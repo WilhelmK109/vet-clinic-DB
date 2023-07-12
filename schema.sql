@@ -12,3 +12,10 @@ CREATE TABLE animals(
 );
 
 ALTER TABLE animals ADD COLUMN species TEXT;
+
+CREATE TABLE owners (
+  id SERIAL PRIMARY KEY,
+  full_name VARCHAR(255),
+  age INTEGER
+);
+
