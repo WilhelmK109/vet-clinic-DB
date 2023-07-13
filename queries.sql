@@ -1,5 +1,7 @@
 /*Queries that provide answers to the questions from all projects.*/
 
+/****** Project 1 *******/
+
 SELECT * FROM animals WHERE name LIKE '%_mon';
 
 SELECT name FROM animals WHERE date_of_birth BETWEEN '2016-01-01' AND '2019-12-31';
@@ -99,3 +101,49 @@ JOIN owners o ON a.owner_id = o.id
 GROUP BY o.full_name
 ORDER BY COUNT(*) DESC
 LIMIT 1;
+
+/************** Project 4 ***************/
+
+SELECT a.name AS last_animal_seen
+FROM visits v
+JOIN animals a ON v.animal_id = a.id
+JOIN vets vt ON v.vet_id = vt.id
+WHERE vt.name = 'William Tatcher'
+ORDER BY v.visit_date DESC
+LIMIT 1;
+
+SELECT COUNT(DISTINCT a.id) AS animal_count
+FROM animals a
+JOIN visits v ON a.id = v.animal_id
+JOIN vets vt ON v.vet_id = vt.id
+WHERE vt.name = 'Stephanie Mendez';
+
+SELECT v.name, s.name AS specialty
+FROM vets v
+LEFT JOIN specializations sp ON v.id = sp.vet_id
+LEFT JOIN species s ON sp.species_id = s.id;
+
+SELECT a.name
+FROM animals a
+JOIN visits v ON a.id = v.animal_id
+JOIN vets vt ON v.vet_id = vt.id
+WHERE vt.name = 'Stephanie Mendez'
+AND v.visit_date BETWEEN '2020-04-01' AND '2020-08-30';
+
+SELECT a.name, COUNT(v.animal_id) AS visit_count
+FROM animals a
+JOIN visits v ON a.id = v.animal_id
+GROUP BY a.id
+ORDER BY visit_count DESC
+LIMIT 1;
+
+SELECT o.full_name AS owner_name
+FROM owners o
+INNER JOIN animals a ON a.owner_id = o.id
+INNER JOIN visits v ON v.animal_id = a.id
+INNER JOIN vets v2 ON v2.id = v.vet_id
+WHERE v2.name = 'Maisy Smith'
+ORDER BY v.visit_date ASC
+LIMIT 1;
+
+

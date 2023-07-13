@@ -1,5 +1,6 @@
 /* Database schema to keep the structure of entire database. */
 
+/*************** Project 1 ****************/
 CREATE DATABASE vet_clinic;
 
 CREATE TABLE animals(
@@ -42,11 +43,20 @@ ALTER TABLE animals
         FOREIGN KEY (owner_id)
         REFERENCES owners (id);
 
+/*********** Project 4 **************/
+
 CREATE TABLE vets (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
     age INTEGER,
     date_of_graduation DATE
+);
+
+CREATE TABLE specializations (
+    vet_id INT,
+    species_id INT,
+    FOREIGN KEY (vet_id) REFERENCES vets (id),
+    FOREIGN KEY (species_id) REFERENCES species (id)
 );
 
 CREATE TABLE visits (
