@@ -1,5 +1,6 @@
 /* Database schema to keep the structure of entire database. */
 
+/*************** Project 1 ****************/
 CREATE DATABASE vet_clinic;
 
 CREATE TABLE animals(
@@ -11,8 +12,10 @@ CREATE TABLE animals(
     weight_kg decimal
 );
 
+/************* Project 2 ***************/
 ALTER TABLE animals ADD COLUMN species TEXT;
 
+/********** Project 3 ************/
 CREATE TABLE owners (
   id SERIAL PRIMARY KEY,
   full_name VARCHAR(255),
@@ -41,3 +44,26 @@ ALTER TABLE animals
     ADD CONSTRAINT fk_owners
         FOREIGN KEY (owner_id)
         REFERENCES owners (id);
+
+/*********** Project 4 **************/
+CREATE TABLE vets (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    age INTEGER,
+    date_of_graduation DATE
+);
+
+CREATE TABLE specializations (
+    vet_id INT,
+    species_id INT,
+    FOREIGN KEY (vet_id) REFERENCES vets (id),
+    FOREIGN KEY (species_id) REFERENCES species (id)
+);
+
+CREATE TABLE visits (
+    animal_id INT,
+    vet_id INT,
+    visit_date DATE,
+    FOREIGN KEY (animal_id) REFERENCES animals (id),
+    FOREIGN KEY (vet_id) REFERENCES vets (id)
+);
