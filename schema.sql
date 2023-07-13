@@ -48,3 +48,11 @@ CREATE TABLE vets (
     age INTEGER,
     date_of_graduation DATE
 );
+
+CREATE TABLE visits (
+    animal_id INT,
+    vet_id INT,
+    visit_date DATE,
+    FOREIGN KEY (animal_id) REFERENCES animals (id),
+    FOREIGN KEY (vet_id) REFERENCES vets (id)
+);
