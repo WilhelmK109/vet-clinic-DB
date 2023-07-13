@@ -12,8 +12,10 @@ CREATE TABLE animals(
     weight_kg decimal
 );
 
+/************* Project 2 ***************/
 ALTER TABLE animals ADD COLUMN species TEXT;
 
+/********** Project 3 ************/
 CREATE TABLE owners (
   id SERIAL PRIMARY KEY,
   full_name VARCHAR(255),
@@ -44,7 +46,6 @@ ALTER TABLE animals
         REFERENCES owners (id);
 
 /*********** Project 4 **************/
-
 CREATE TABLE vets (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
