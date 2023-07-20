@@ -169,3 +169,8 @@ JOIN vets ON vet_id = vets.id
 WHERE vets.name = 'Maisy Smith'
 GROUP BY species.name
 ORDER BY COUNT(*) desc limit 1;
+
+-- Query the database performance audit by using "EXPLAIN ANALYZE"
+SELECT COUNT(*) FROM visits where animal_id = 4;
+SELECT * FROM visits where vet_id = 2;
+SELECT * FROM owners where email = 'owner_18327@mail.com';
